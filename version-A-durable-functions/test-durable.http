@@ -1,0 +1,78 @@
+### 1. Valid expense under $100 (Auto-approved)
+POST http://localhost:7071/api/start
+Content-Type: application/json
+
+{
+  "employee_name": "John Doe",
+  "employee_email": "john@example.com",
+  "amount": 50,
+  "category": "meals",
+  "description": "Lunch meeting",
+  "manager_email": "manager@example.com"
+}
+
+### 2. Valid expense >= $100, manager approves
+POST http://localhost:7071/api/start
+Content-Type: application/json
+
+{
+  "employee_name": "Jane Doe",
+  "employee_email": "jane@example.com",
+  "amount": 200,
+  "category": "travel",
+  "description": "Flight ticket",
+  "manager_email": "manager@example.com"
+}
+### Copy the "id" from response, then:
+POST http://localhost:7071/api/manager-response?instanceId=603f6ee3fa7845d593dcd56d91de7482&approved=true
+
+### Check result:
+GET http://localhost:7071/runtime/webhooks/durabletask/instances/603f6ee3fa7845d593dcd56d91de7482
+
+### 3. Valid expense >= $100, manager rejects
+POST http://localhost:7071/api/start
+Content-Type: application/json
+
+{
+  "employee_name": "Bob Smith",
+  "employee_email": "bob@example.com",
+  "amount": 300,
+  "category": "equipment",
+  "description": "Laptop purchase",
+  "manager_email": "manager@example.com"
+}
+
+### Copy the "id" from response, then:
+POST http://localhost:7071/api/manager-response?instanceId=0609ee24358b4b508086e1b0d6a4af16&approved=false
+
+### Check result:
+GET http://localhost:7071/runtime/webhooks/durabletask/instances/0609ee24358b4b508086e1b0d6a4af16
+
+
+### 4. Valid expense >= $100, no manager response
+# Do nothing → wait ~30 seconds → Escalated
+
+###
+
+### 5. Missing required fields
+POST http://localhost:7071/api/start
+Content-Type: application/json
+
+{
+  "employee_name": "Alice"
+}
+
+###
+
+### 6. Invalid category
+POST http://localhost:7071/api/start
+Content-Type: application/json
+
+{
+  "employee_name": "Alice",
+  "employee_email": "alice@example.com",
+  "amount": 150,
+  "category": "gaming",
+  "description": "Console",
+  "manager_email": "manager@example.com"
+}
