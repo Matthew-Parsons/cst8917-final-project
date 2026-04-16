@@ -24,10 +24,10 @@ Content-Type: application/json
   "manager_email": "manager@example.com"
 }
 ### Copy the "id" from response, then:
-POST http://localhost:7071/api/manager-response?instanceId=603f6ee3fa7845d593dcd56d91de7482&approved=true
+POST http://localhost:7071/api/manager-response?instanceId=13b702b1eea946239d862008246dcdbe&approved=true
 
 ### Check result:
-GET http://localhost:7071/runtime/webhooks/durabletask/instances/603f6ee3fa7845d593dcd56d91de7482
+GET http://localhost:7071/runtime/webhooks/durabletask/instances/13b702b1eea946239d862008246dcdbe
 
 ### 3. Valid expense >= $100, manager rejects
 POST http://localhost:7071/api/start
@@ -43,10 +43,10 @@ Content-Type: application/json
 }
 
 ### Copy the "id" from response, then:
-POST http://localhost:7071/api/manager-response?instanceId=0609ee24358b4b508086e1b0d6a4af16&approved=false
+POST http://localhost:7071/api/manager-response?instanceId=30657a297add458499c40c861d73080b&approved=false
 
 ### Check result:
-GET http://localhost:7071/runtime/webhooks/durabletask/instances/0609ee24358b4b508086e1b0d6a4af16
+GET http://localhost:7071/runtime/webhooks/durabletask/instances/5837d55b96b342ecaf7f74496dd008a1
 
 
 ### 4. Valid expense >= $100, no manager response
