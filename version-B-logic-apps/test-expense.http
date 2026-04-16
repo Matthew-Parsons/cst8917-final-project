@@ -1,0 +1,74 @@
+### 1. VALID - AUTO APPROVE (<100)
+POST http://localhost:7071/api/validate
+Content-Type: application/json
+
+{
+  "employee_name": "Alice",
+  "employee_email": "alice@company.com",
+  "amount": 45,
+  "category": "meals",
+  "description": "Client lunch",
+  "manager_email": "manager@company.com"
+}
+
+### 2. VALID - MANAGER APPROVE (>=100)
+POST http://localhost:7071/api/validate
+Content-Type: application/json
+
+{
+  "employee_name": "Bob",
+  "employee_email": "bob@company.com",
+  "amount": 250,
+  "category": "travel",
+  "description": "Flight to conference",
+  "manager_email": "manager@company.com"
+}
+
+### 3. VALID - MANAGER REJECT
+POST http://localhost:7071/api/validate
+Content-Type: application/json
+
+{
+  "employee_name": "Carol",
+  "employee_email": "carol@company.com",
+  "amount": 180,
+  "category": "software",
+  "description": "SaaS subscription",
+  "manager_email": "manager@company.com"
+}
+
+### 4. MISSING FIELDS (VALIDATION ERROR)
+POST http://localhost:7071/api/validate
+Content-Type: application/json
+
+{
+  "employee_name": "Dan",
+  "amount": 80,
+  "category": "meals"
+}
+
+### 5. INVALID CATEGORY
+POST http://localhost:7071/api/validate
+Content-Type: application/json
+
+{
+  "employee_name": "Eve",
+  "employee_email": "eve@company.com",
+  "amount": 60,
+  "category": "gaming",
+  "description": "Controller",
+  "manager_email": "manager@company.com"
+}
+
+### 6. MANAGER TIMEOUT SIMULATION
+POST http://localhost:7071/api/validate
+Content-Type: application/json
+
+{
+  "employee_name": "Frank",
+  "employee_email": "frank@company.com",
+  "amount": 500,
+  "category": "equipment",
+  "description": "Laptop",
+  "manager_email": "manager@company.com"
+}
