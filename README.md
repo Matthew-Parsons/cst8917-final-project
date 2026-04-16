@@ -114,3 +114,6 @@ Durable Functions is also more cost-effective at scale, which becomes important 
 That said, I would choose Azure Logic Apps in situations where speed of development and ease of use are the top priorities. For example, if a business team needed a simple workflow quickly with minimal coding, Logic Apps would be ideal. Its visual interface and built-in connectors make it accessible to non-developers and suitable for straightforward automation tasks.
 
 In summary, Durable Functions is better for complex, scalable, and testable systems, while Logic Apps is better for rapid development and simpler integrations.
+
+# AI Disclosure
+AI was used to help with debugging and for minor assistance in part 3.
